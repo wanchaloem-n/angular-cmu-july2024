@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Example</title>
+</head>
+<body><center>
+    <h1>QR Code to GitHub Repository</h1>
+    
+      <div id="qrcode"></div>
+    </center>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        new QRCode(document.getElementById("qrcode"), {
+            text: "https://github.com/wanchaloem-n/angular-cmu-july2024.git",
+            width: 500,
+            height: 500
+        });
+    </script>
+</body>
+</html>
