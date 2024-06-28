@@ -1,0 +1,20 @@
+.progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0; /* Light grey background */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Ensures inner content respects border radius */
+    margin: 20px 0; /* Spacing */
+}
+
+.progress-bar {
+    height: 30px; /* Increased height */
+    line-height: 30px; /* Align text vertically */
+    color: white; /* Text color */
+    text-align: center; /* Center text horizontally */
+    background: linear-gradient(45deg, #4b6cb7, #182848); /* Gradient background */
+    transition: width 0.4s ease-in-out; /* Smooth width transition */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for the progress bar */
+    font-weight: bold; /* Bold font for the text */
+}

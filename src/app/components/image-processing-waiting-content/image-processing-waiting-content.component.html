@@ -1,0 +1,66 @@
+<section class="gjs-section" id="ikar2w">
+    <div class="gjs-container" id="iqbbuy">
+      <div class="gjs-grid-row" id="in18qa">
+        <div class="gjs-grid-column" id="iwa1ek">
+          <h1 class="gjs-heading" id="ipgofu">Image Processing</h1>
+        </div>
+      </div>
+      
+      <form [formGroup]="myForm" class="d-flex justify-content-center" (ngSubmit)="submitdata()">
+        <div class="gjs-grid-row">
+          <div class="gjs-grid-column">
+            <label  class="form-label" for="fileInput">File</label>
+            <input class="form-control" type="file" accept="image/*" id="fileInput" formControlName="file" (change)="onFileSelected($event)" />
+          </div>
+          <div class="px-2 gjs-grid-column">
+            <label class="form-label" for="paramInput">Param</label>
+            <input class="form-control" type="text" id="paramInput" formControlName="param" />
+          </div>
+          <div class="px-2 gjs-grid-column d-flex align-items-end">
+            <button type="submit" class="gjs-button btn">Submit</button>
+          </div>
+        </div>
+      </form>
+      
+      <div class="gjs-grid-row" id="ip78gx">
+        <div class="gjs-grid-column" id="ibd9jc">
+          <div class="gjs-grid-row" id="i28iag">
+            <div class="gjs-grid-column" id="iabauf">
+              <h1 class="gjs-heading" id="ilskxq">original</h1>
+            </div>
+          </div>
+          <div class="gjs-grid-row" id="i75sf6">
+            <div class="gjs-grid-column" id="igni59">
+              <img
+                [src]="previewImage"
+                id="i43eu9"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="gjs-grid-column" id="iuy7ge">
+          <div class="gjs-grid-row" id="ilrrff">
+            <div class="gjs-grid-column">
+              <h1 class="gjs-heading" id="ia7gvt">output</h1>
+            </div>
+          </div>
+          <div class="gjs-grid-row" id="ijd5rr">
+            <div class="gjs-grid-column" id="if9z7d"
+            style="height: 100%;display: flex;align-items: center;">
+              <img *ngIf = "progress == 0 || progress == 100" 
+              
+                [src]="outputImage"
+                id="ioak7l"
+              />
+
+              <app-waiting  *ngIf = "progress > 0 && progress < 100"
+                [progress]="progress"
+                style="height: 100%;display: flex;align-items: center;"
+              id="ioak7l"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
