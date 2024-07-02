@@ -1,0 +1,83 @@
+<script>
+
+
+// การประกาศตัวแปรด้วย var
+var x = 10; // สามารถเปลี่ยนค่าได้ และสามารถประกาศใหม่ได้ในสโคปเดียวกัน
+
+console.log(x); 
+x = 5; // สามารถเปลี่ยนค่าได้ และสามารถประกาศใหม่ได้ในสโคปเดียวกัน
+console.log(x); 
+
+
+var x = 30; // ประกาศใหม่ได้
+console.log(x); 
+
+
+// การประกาศตัวแปรด้วย let
+let y = 10; // สามารถเปลี่ยนค่าได้ แต่ไม่สามารถประกาศใหม่ได้ในสโคปเดียวกัน
+
+console.log(y); 
+y = 5; // สามารถเปลี่ยนค่าได้ 
+console.log(y); 
+
+// การประกาศตัวแปรด้วย const
+const c = 10; // ไม่สามารถเปลี่ยนค่าได้และไม่สามารถประกาศใหม่ได้
+
+console.log(c); // Output: 10
+//c = 5; // จะเกิดข้อผิดพลาดถ้าพยายามเปลี่ยนค่า
+console.log(c); // Output: 10
+
+
+// ค่าพื้นฐาน (Basic Values)
+const a = 5;
+const b = 3.5;
+const name = "Mark";
+const isTrue = true;
+const isNull = null;
+const isUndefined = undefined;
+
+// การดำเนินการ (Operations)
+const sum = a + b; // การบวก
+console.log("Sum:", sum); // Output: Sum: 8.5
+
+const difference = a - b; // การลบ
+console.log("Difference:", difference); // Output: Difference: 1.5
+
+const product = a * b; // การคูณ
+console.log("Product:", product); // Output: Product: 17.5
+
+const quotient = a / b; // การหาร
+console.log("Quotient:", quotient); // Output: Quotient: 1.4285714285714286
+
+const remainder = a % b; // การหารเอาเศษ
+console.log("Remainder:", remainder); // Output: Remainder: 1.5
+
+// ฟังก์ชัน (Functions)
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+
+console.log(greet("Nick")); // Output: Hello, Nick!
+
+if(2 < 3 ) {
+    console.log("Hello OK!")
+  }
+
+let var1 = 5
+if(var1 < 3 ) {
+    console.log("Hello OK!!")
+  }
+
+if(2 < 3 ) {
+    var d = 5
+    let e = 3
+    const f = 2
+    console.log("Hello !")
+  }
+
+
+  //console.log(d,e,f)
+  console.log(d)
+
+
+</script>

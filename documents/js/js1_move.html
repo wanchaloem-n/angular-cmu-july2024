@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Box Randomly</title>
+    <style>
+        #animatedBox {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="moveBox()">Click</button>
+    <button onclick="moveBox2()">Move Randomly</button>
+    <div id="animatedBox"
+        onmouseover="moveBox2()">
+    </div>
+    <script>
+        var box = document.getElementById('animatedBox');
+        var positionX = 0;
+        var positionY = 0;
+        var boxSize = 50; // ขนาดของกล่อง
+        var step = 100; // ขนาดการก้าว
+
+        function moveBox() {
+            positionX += 20;
+            positionY += 20;
+            updatePosition();
+        }
+
+        function moveBox2() {
+            var deltaX = (Math.random() < 0.5 ? -1 : 1) * step;
+            var deltaY = (Math.random() < 0.5 ? -1 : 1) * step;
+
+            var newPositionX = positionX + deltaX;
+            var newPositionY = positionY + deltaY;
+
+            // ตรวจสอบขอบเขตของหน้าจอ
+            var screenWidth = window.innerWidth;
+            var screenHeight = window.innerHeight;
+
+            if (newPositionX < 0 || newPositionX + boxSize > screenWidth) {
+                deltaX = -deltaX;
+            }
+            if (newPositionY < 0 || newPositionY + boxSize > screenHeight) {
+                deltaY = -deltaY;
+            }
+
+            positionX += deltaX;
+            positionY += deltaY;
+            updatePosition();
+        }
+
+        function updatePosition() {
+            box.style.marginLeft = positionX + 'px';
+            box.style.marginTop = positionY + 'px';
+        }
+    </script>
+</body>
+</html>
