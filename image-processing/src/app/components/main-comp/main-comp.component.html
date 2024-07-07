@@ -1,0 +1,43 @@
+
+
+
+<form [formGroup]="myForm" class="d-flex justify-content-center" (ngSubmit)="submitdata()">
+<div class="gjs-grid-row" id="i3m94u">
+  <div class="gjs-grid-column" id="ixvd08">
+    <input class="form-control" type="file" accept="image/*" id="ioct6i" formControlName="file" (change)="onFileSelected($event)" />
+
+    <input
+      type="text"
+      id="i1s786"
+      (change)="onFileSelected($event)"
+      formControlName="param"
+    />
+
+
+    <button type="submit" id="icz2xk">Send</button>
+  </div>
+</div>
+</form>
+
+<div id="feature-section" class="gjs-grid-row">
+  <div id="imymf" class="gjs-grid-column">
+    <div id="ib541" class="gjs-grid-row">
+      <div id="iz8m8" class="gjs-grid-column">
+        <h2 id="ism014" class="gjs-heading">Feature Text</h2>
+        <img
+          [src]="previewImage"
+          id="i8l433"
+        />
+      </div>
+      <div id="iepks" class="gjs-grid-column">
+        <h2 id="ie27wc" class="gjs-heading">Feature Text</h2>
+        <img
+          [src]="outputImage"
+          id="i466d"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+
