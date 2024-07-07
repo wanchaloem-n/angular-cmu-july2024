@@ -3,10 +3,14 @@ from flask_cors import CORS
 import cv2
 import base64
 import numpy as np
+
 app = Flask(__name__)
 CORS(app)
 
-def flip_image(base64_string, axis = 0):
+# pip install opencv-python
+# pip install flask flask-cors
+
+def flip_image(base64_string, axis=0):
     # Convert base64 string to image
     img_data = base64.b64decode(base64_string)
     np_arr = np.frombuffer(img_data, np.uint8)
@@ -21,6 +25,25 @@ def flip_image(base64_string, axis = 0):
 
     return flipped_base64
 
+def deblur_image(base64_string, kernel_size=(5, 5)):
+    try:
+        img_data = base64.b64decode(base64_string)
+        np_arr = np.frombuffer(img_data, np.uint8)
+        img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+
+        if img is None:
+            raise ValueError("Image decoding failed. The image data might be corrupted or empty.")
+
+        blurred_img = cv2.GaussianBlur(img, kernel_size, 0)
+        deblurred_img = cv2.addWeighted(img, 1.5, blurred_img, -0.5, 0)
+
+        _, encoded_img = cv2.imencode('.png', deblurred_img)
+        deblurred_base64 = base64.b64encode(encoded_img).decode('utf-8')
+
+        return deblurred_base64
+    except Exception as e:
+        raise ValueError(f"Deblurring failed: {str(e)}")
+
 @app.route('/flip-image', methods=['POST'])
 def flip_image_endpoint():
     try:
@@ -31,45 +54,21 @@ def flip_image_endpoint():
         flipped_base64 = flip_image(original_base64.replace("data:image/png;base64,",""), int(param[0]))
 
         response_data = {'image': "data:image/png;base64,"+flipped_base64}
-        global progress
-        if int(param[1])==1:
-            while(progress<100):
-                time.sleep(0.1)
         return jsonify(response_data), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
 
-# This would be replaced with actual task progress tracking
-progress = 0
-import time
-import threading
+@app.route('/deblur-image', methods=['POST'])
+def deblur_image_endpoint():
+    try:
+        data = request.json
+        original_base64 = data['image']
+        deblurred_base64 = deblur_image(original_base64.replace("data:image/png;base64,", ""))
 
-def long_running_task():
-    global progress
-    for i in range(10):
-        time.sleep(1)  # Simulate a task
-        progress += 10
-        if progress >= 100:
-            break  # Exit the loop if progress reaches 100
-
-
-@app.route('/start-process')
-def start_process():
-    global progress
-    progress = 0
-    thread = threading.Thread(target=long_running_task)
-    thread.start()
-    return jsonify({"message": "Process started"}), 202
-
-@app.route('/progress')
-def get_progress():
-    return jsonify({"progress": progress})
-
-@app.route('/result')
-def get_result():
-    # Implement logic to retrieve and return the result of the process
-    return jsonify({"result": "Process complete!"})
+        response_data = {'image': "data:image/png;base64," + deblurred_base64}
+        return jsonify(response_data), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
